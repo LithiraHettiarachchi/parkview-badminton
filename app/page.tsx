@@ -1,68 +1,22 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SessionCard from '@/components/SessionCard';
-import BookingModal from '@/components/BookingModal';
 import { Session } from '@/lib/types';
-import { fetchSessions, createBooking, checkAvailability } from '@/lib/dashify';
+import { mockSessions } from '@/data/mockSessions';
 import styles from './page.module.css';
 
 export default function Home() {
-    const [sessions, setSessions] = useState<Session[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [selectedSession, setSelectedSession] = useState<Session | null>(null);
-    const [showModal, setShowModal] = useState(false);
+    // Show only first 3 sessions
+    const [sessions] = useState<Session[]>(mockSessions.slice(0, 3));
+    const [loading] = useState(false);
+    const router = useRouter();
 
-    useEffect(() => {
-        loadSessions();
-    }, []);
-
-    const loadSessions = async () => {
-        setLoading(true);
-        const data = await fetchSessions();
-        setSessions(data);
-        setLoading(false);
-    };
-
-    const handleBookSession = (session: Session) => {
-        setSelectedSession(session);
-        setShowModal(true);
-    };
-
-    const handleConfirmBooking = async (userData: { name: string, email: string, phone: string }) => {
-        if (!selectedSession) return;
-
-        try {
-            // Check availability one more time
-            const availability = await checkAvailability(selectedSession.id);
-
-            if (availability > 0) {
-                // Create booking in Dashify
-                const result = await createBooking(
-                    selectedSession.id,
-                    userData.email, // Using email as userId for now
-                    userData.name,
-                    userData.email
-                );
-
-                if (result.success) {
-                    alert(`✅ Booking confirmed for ${selectedSession.day}! You'll receive a confirmation email shortly.`);
-                    setShowModal(false);
-                    loadSessions(); // Refresh sessions
-                } else {
-                    alert('❌ Booking failed: ' + (result.error || 'Unknown error'));
-                }
-            } else {
-                // Add to waitlist
-                alert(`Session is full. You've been added to the waitlist for ${selectedSession.day}.`);
-                setShowModal(false);
-            }
-        } catch (error) {
-            console.error('Booking error:', error);
-            alert('❌ An error occurred during booking. Please try again.');
-        }
+    const handleBookSession = () => {
+        router.push('/contact');
     };
 
     return (
@@ -158,14 +112,6 @@ export default function Home() {
             </main>
 
             <Footer />
-
-            {showModal && (
-                <BookingModal
-                    session={selectedSession}
-                    onClose={() => setShowModal(false)}
-                    onConfirm={handleConfirmBooking}
-                />
-            )}
         </>
     );
 }

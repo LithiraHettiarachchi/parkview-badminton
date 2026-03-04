@@ -28,10 +28,10 @@ export default function ContactPage() {
                                 For bookings, inquiries, or general information
                             </p>
                             <a
-                                href="mailto:info@parkviewbadminton.com"
+                                href="mailto:parkviewbclub@gmail.com"
                                 className={styles.contactLink}
                             >
-                                info@parkviewbadminton.com
+                                parkviewbclub@gmail.com
                             </a>
                         </div>
 
@@ -45,7 +45,7 @@ export default function ContactPage() {
                             </p>
                             <div className={styles.socialLinks}>
                                 <a
-                                    href="https://facebook.com/parkviewbadminton"
+                                    href="https://www.facebook.com/share/1C7Dngdu9b/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className={styles.socialLink}

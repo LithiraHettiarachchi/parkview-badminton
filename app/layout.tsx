@@ -12,6 +12,10 @@ const inter = Inter({
 export const metadata: Metadata = {
     title: "Parkview Badminton Club - London's Premier Badminton Community",
     description: "Join Parkview Badminton Club for friendly, competitive badminton sessions in London. Book courts, meet fellow players, and improve your game. Sessions on Sundays, Tuesdays, and Thursdays.",
+    icons: {
+        icon: '/parkViewLogo.jpeg',
+        apple: '/parkViewLogo.jpeg',
+    },
     keywords: [
         "badminton club London",
         "badminton sessions",

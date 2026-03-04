@@ -11,6 +11,12 @@ export interface Session {
     price: number;
     available: boolean;
     date?: string; // Specific date for the session
+    title?: string; // Session title (e.g., "Sunday Badminton Session")
+    description?: string; // Detailed session description
+    imageUrl?: string; // Session image
+    duration?: string; // Session duration (e.g., "2 hours")
+    level?: string; // Skill level (e.g., "Intermediate")
+    includes?: string[]; // What's included in the session
 }
 
 export interface Booking {

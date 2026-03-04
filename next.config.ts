@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['api.dashify.aurbyn.com'],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'api.dashify.aurbyn.com',
+            },
+        ],
     },
 };
 

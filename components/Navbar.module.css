@@ -37,6 +37,11 @@
     font-size: 1.75rem;
 }
 
+.logoImage {
+    border-radius: 8px;
+    object-fit: cover;
+}
+
 .logoText {
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
     -webkit-background-clip: text;
